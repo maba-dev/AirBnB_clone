@@ -7,99 +7,33 @@ import os
 
 class FileStorage:
 
-    """Class for serializtion and deserialization of base classes."""
+    """Class for converting JSON to base class and vice versa."""
     __file_path = "file.json"
     __objects = {}
+    id=12121212
 
     def all(self):
         """Returns __objects dictionary."""
-        # TODO: should this be a copy()?
         return FileStorage.__objects
 
     def new(self, obj):
         """Sets new obj in __objects dictionary."""
-        # TODO: should these be more precise specifiers?
         key = "{}.{}".format(type(obj).__name__, obj.id)
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """Serialzes __objects to JSON file."""
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
-            d = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
-            json.dump(d, f)
-
-    def classes(self):
-        """Returns a dictionary of valid classes and their references."""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-
-        return {"BaseModel": BaseModel}
+        """Convert objects to JSON file."""
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as filest:
+            dictio = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
+            json.dump(dictio, filest)
 
 
     def reload(self):
-        """Deserializes JSON file into __objects."""
+        """Transform the JSON file into objects."""
         if not os.path.isfile(FileStorage.__file_path):
             return
-        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-            obj_dict = json.load(f)
+        with open(FileStorage.__file_path, "r", encoding="utf-8") as filest:
+            obj_dict = json.load(filest)
             obj_dict = {k: self.classes()[v["__class__"]](**v)
                         for k, v in obj_dict.items()}
-            # TODO: should this overwrite or insert?
             FileStorage.__objects = obj_dict
-
-    def attributes(self):
-        """Returns the valid attributes and their types for classname."""
-        return {
-            "BaseModel":
-                     {"id": str,
-                      "created_at": datetime.datetime,
-                      "updated_at": datetime.datetime},
-            "User":
-                     {"email": str,
-                      "password": str,
-                      "first_name": str,
-                      "last_name": str},
-            "State":
-                     {"name": str},
-            "City":
-                     {"state_id": str,
-                      "name": str},
-            "Amenity":
-                     {"name": str},
-            "Place":
-                     {"city_id": str,
-                      "user_id": str,
-                      "name": str,
-                      "description": str,
-                      "number_rooms": int,
-                      "number_bathrooms": int,
-                      "max_guest": int,
-                      "price_by_night": int,
-                      "latitude": float,
-                      "longitude": float,
-                      "amenity_ids": list},
-            "Review":
-            {"place_id": str,
-                         "user_id": str,
-                         "text": str}
-        }
-from models import storage
-from models.base_model import BaseModel
-
-all_objs = storage.all()
-print("-- Reloaded objects --")
-for obj_id in all_objs.keys():
-    obj = all_objs[obj_id]
-    print(obj)
-
-print("-- Create a new object --")
-my_model = BaseModel()
-my_model.name = "My_First_Model"
-my_model.my_number = 89
-my_model.save()
-print(my_model)
