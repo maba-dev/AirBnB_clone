@@ -12,11 +12,11 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key in ["created_at", "updated_at"]:
-                        val = datetime.strptime(value,'%Y-%m-%dT%H:%M:%S.%f')
-                        setattr(self, key, val)
+                        setattr(self, key,
+                                datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                                )
                     else:
                         setattr(self, key, value)
-
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -24,7 +24,9 @@ class BaseModel:
 
 
     def __str__(self):
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
+                                         self.id, self.__dict__)
 
     
 
