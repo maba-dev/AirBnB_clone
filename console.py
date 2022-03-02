@@ -75,3 +75,6 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                 else:
                     print(storage.all()[key])
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
