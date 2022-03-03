@@ -7,6 +7,7 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 import models
+import shlex
 
 classes = ("BaseModel", "User", "State", "City", "Amenity", "Place", "Review")
 
@@ -87,7 +88,8 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing ** ")
             return False
-        data = line.split(" ")
+        data = shlex.split(line)
+        print(data)
         if data[0] not in classes:
             print("** class doesn't exist **")
             return False
@@ -128,10 +130,12 @@ class HBNBCommand(cmd.Cmd):
         Returns:
             _type_: _description_
         """
+        print(line)
         if not line:
             print("** class name missing ** ")
             return False
-        data = line.split(" ")
+        data = shlex.split(line)
+        print(data)
         if data[0] not in classes:
             print("** class doesn't exist **")
             return False
