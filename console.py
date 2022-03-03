@@ -119,6 +119,38 @@ class HBNBCommand(cmd.Cmd):
             list_item = [str(obj) for key, obj in storage.all().items()]
             print(list_item)
     
+    def do_update(self, line):
+        """_summary_
+
+        Args:
+            line (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        if not line:
+            print("** class name missing ** ")
+            return False
+        data = line.split(" ")
+        if data[0] not in classes:
+            print("** class doesn't exist **")
+            return False
+        lendata = len(data)
+        if lendata == 1:
+            print("** instance id missing **")
+        else:
+            strLine = "{}.{}".format(data[0], data[1])
+            if strLine not in models.storage.all():
+                print("** no instance found **")
+                return False
+            if lendata == 2:
+                print("** attribute name missing **")
+                return False
+            if lendata == 3:
+                print("** value missing **")
+                return False
+        setattr(models.storage.all()[strLine], data[2], data[3])
+        models.storage.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
