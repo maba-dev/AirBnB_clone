@@ -5,11 +5,11 @@ Creation of the console of the web application
 
 import cmd
 from models.base_model import BaseModel
+import global_usage
+from global_usage import *
 from models import storage
 import models
 import shlex
-
-classes = ("BaseModel", "User", "State", "City", "Amenity", "Place", "Review")
 
 
 class HBNBCommand(cmd.Cmd):
@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         data = shlex.split(line)
         print(data)
-        if data[0] not in classes:
+        if data[0] not in global_usage.classe:
             print("** class doesn't exist **")
             return False
         if len(data) == 1:
@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         data = shlex.split(line)
         print(data)
-        if data[0] not in classes:
+        if data[0] not in global_usage.classe:
             print("** class doesn't exist **")
             return False
         lendata = len(data)
