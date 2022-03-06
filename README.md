@@ -13,21 +13,21 @@
 <p>$</p>
 <p>But also in non-interactive mode:</p>
 
-``$ echo "help" | ./console.py
-(hbnb)
-Documented commands (type help <topic>):
-========================================
+<p>$ echo "help" | ./console.py</p>
+<p>(hbnb)</p>
+<p>Documented commands (type help <topic>):<br>
+========================================<br>
     EOF  all  create  destroy  help  quit  show  update
-
-(hbnb)
+</p>
+<p>(hbnb)</p>
 
 **how to use it**<br>
 <p>After execution, the console displays an input prompt</p>
-$ ./console.py
-(hbnb)
+<p>$ ./console.py</p>
+<p>(hbnb)</p>
 
 
 <p> To quit the console, enter the command `` quit`` or ``EOF`` </p>
-$ ./console.py
-(hbnb) EOF
-$
+<p>$ ./console.py</p>
+<p>(hbnb) EOF</p>
+<p>$</p>
