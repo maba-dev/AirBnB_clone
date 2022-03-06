@@ -28,10 +28,10 @@ Documented commands (type help <topic>):
 **how to use it**<br>
     <p>After execution, the console displays an input prompt</p>
 ``
-$ ./console.py 
+``$ ./console.py 
 (hbnb)
 
-``
+
     To quit the console, enter the command `` quit`` or ``EOF``
 ``
 $ ./console.py
