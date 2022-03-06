@@ -5,6 +5,7 @@ import json
 import os
 import global_usage
 
+
 class FileStorage:
 
     """Class for converting JSON to base class and vice versa."""
@@ -26,7 +27,6 @@ class FileStorage:
             dictio = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
             json.dump(dictio, filest)
 
-
     def reload(self):
         """Transform the JSON file into objects."""
         if not os.path.isfile(FileStorage.__file_path):
@@ -36,6 +36,7 @@ class FileStorage:
             obj_dict = {k: self.classes()[v["__class__"]](**v)
                         for k, v in obj_dict.items()}
             FileStorage.__objects = obj_dict
+
     def classes(self):
         """Retourn le  dictionaires des classes de référence"""
 
