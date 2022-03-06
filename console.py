@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             line (_type_): _description_
         """
-        if line in ["",None]:
+        if line in ["", None]:
             print("** class name missing **")
         else:
             words = line.split(' ')
@@ -76,6 +76,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                 else:
                     print(storage.all()[key])
+
     def do_destroy(self, line):
         """_summary_
 
@@ -115,12 +116,12 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 list_item = [str(obj) for key, obj in storage.all().items()
-                     if type(obj).__name__ == words[0]]
+                    if type(obj).__name__ == words[0]]
                 print(list_item)
         else:
             list_item = [str(obj) for key, obj in storage.all().items()]
             print(list_item)
-    
+
     def do_update(self, line):
         """_summary_
 
@@ -155,6 +156,7 @@ class HBNBCommand(cmd.Cmd):
                 return False
         setattr(models.storage.all()[strLine], data[2], data[3])
         models.storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
