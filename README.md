@@ -1,19 +1,19 @@
-# AirBnB_clone project<br\>
+# AirBnB_clone project<br>
 
-**Description of the project**<br\>
-    <p>AirBnB is a complete web application with database storage, a back-end side and a front-end side.</p><br\>
+**Description of the project**<br>
+    <p>AirBnB is a complete web application with database storage, a back-end side and a front-end side.</p>
 
-**Console** <br\>
-<p>The console is a command line interpreter that allows you to manage the Back-end side of the AirBnB application.</p><br\>
+**Console** <br>
+<p>The console is a command line interpreter that allows you to manage the Back-end side of the AirBnB application.</p>
 
-**how to start it**<br\>
-<p>The shell works like this in interactive mode:</p><br\>
+**how to start it**<br>
+<p>The shell works like this in interactive mode:</p>
 ``
 $ ./console.py
 (hbnb)
 $   
 ``
-But also in non-interactive mode:
+<p>But also in non-interactive mode:</p>
 `` 
 $ echo "help" | ./console.py
 (hbnb)
@@ -25,8 +25,8 @@ Documented commands (type help <topic>):
 
 ``
 
-**how to use it**<br\>
-    After execution, the console displays an input prompt
+**how to use it**<br>
+    <p>After execution, the console displays an input prompt</p>
 ``
 $ ./console.py 
 (hbnb)
