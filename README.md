@@ -8,9 +8,9 @@
 
 **how to start it**<br>
 <p>The shell works like this in interactive mode:</p>
-``$ ./console.py
-(hbnb)
-$``
+**$ ./console.py**<br>
+<p>(hbnb)</p>
+<p>$</p>
 <p>But also in non-interactive mode:</p>
 
 ``$ echo "help" | ./console.py
@@ -19,17 +19,15 @@ Documented commands (type help <topic>):
 ========================================
     EOF  all  create  destroy  help  quit  show  update
 
-(hbnb)``
+(hbnb)
 
 **how to use it**<br>
-    <p>After execution, the console displays an input prompt</p>
-``$ ./console.py 
-(hbnb)``
+<p>After execution, the console displays an input prompt</p>
+$ ./console.py
+(hbnb)
 
 
 <p> To quit the console, enter the command `` quit`` or ``EOF`` </p>
-``
 $ ./console.py
 (hbnb) EOF
 $
-``
