@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
+    """ Class representing a Place"""
     city_id = ""
     user_id = ""
     name = ""
@@ -15,4 +17,5 @@ class Place(BaseModel):
     amenity_ids = []
 
     def __init__(self, *args, **kwargs):
+        """ Call the construtor of BaseModel class"""
         super().__init__(*args, **kwargs)
