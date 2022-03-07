@@ -10,7 +10,7 @@ from global_usage import *
 from models import storage
 import models
 import shlex
-
+import re
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -19,36 +19,41 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     def default(self, line):
         """Catch commands if nothing else matches then."""
+        # print("DEF:::", line)
         self._precmd(line)
 
     def _precmd(self, line):
         """Intercepts commands to test for class.syntax()"""
+        # print("PRECMD:::", line)
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
             return line
-        classname = match.group(1)
-        method = match.group(2)
-        args = match.group(3)
-        match_uid_and_args = re.search('^"([^"]*)"(?:, (.*))?$', args)
+        matcher = {
+                    "classname": match.group(1),
+                    "method": match.group(2),
+                    "args": match.group(3)
+                    }
+
+        match_uid_and_args = re.search('^"([^"]*)"(?:, (.*))?$', matcher["args"])
         if match_uid_and_args:
             uid = match_uid_and_args.group(1)
             attr_or_dict = match_uid_and_args.group(2)
         else:
-            uid = args
+            uid = matcher["args"]
             attr_or_dict = False
 
         attr_and_value = ""
         if method == "update" and attr_or_dict:
             match_dict = re.search('^({.*})$', attr_or_dict)
             if match_dict:
-                self.update_dict(classname, uid, match_dict.group(1))
+                self.update_dict(matcher["classname"], uid, match_dict.group(1))
                 return ""
             match_attr_and_value = re.search(
                 '^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
             if match_attr_and_value:
                 attr_and_value = (match_attr_and_value.group(
                     1) or "") + " " + (match_attr_and_value.group(2) or "")
-        command = method + " " + classname + " " + uid + " " + attr_and_value
+        command = method + " " + matcher["classname"] + " " + uid + " " + attr_and_value
         self.onecmd(command)
         return command
 
@@ -121,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             _type_: _description_
         """
         if not line:
-            print("** class name missing **")
+            print("** class name missing ** ")
             return False
         data = shlex.split(line)
         print(data)
