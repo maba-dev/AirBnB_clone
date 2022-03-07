@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
         """
         print(line)
         if not line:
-            print("** class name missing ** ")
+            print("** class name missing **")
             return False
         data = shlex.split(line)
         print(data)
