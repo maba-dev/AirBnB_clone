@@ -6,15 +6,9 @@ header {
 }
 
 #logo {
-    background-image: url("../images/icon.png");
+    background-image: url("../images/logo.png");
     background-repeat: no-repeat;
     padding-left: 20px;
-    height: 50%;
-    width: 50%;
-}
-
-h3 {
-    margin-left: 20px;
-    margin-bottom: 5px;
-    color: #404040;
+    height: 100%;
+    width: 100%;
 }
